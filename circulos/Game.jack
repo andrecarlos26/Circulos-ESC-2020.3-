@@ -1,0 +1,71 @@
+class Game {
+   field Circulo circulo1;
+   field Circulo circulo2;
+   field int direcao1;
+   field int direcao2;
+
+   /** Construtor da classe Game. */
+   constructor Game new() {
+      let circulo1 = Circulo.new(40, 40, 5);
+      let circulo2 = Circulo.new(450, 220, 5);
+      let direcao1 = 0;  // initial state is no movement
+      let direcao2 = 0;  // initial state is no movement
+      return this;
+   }
+
+
+   /** Movimentação do círculo */
+   method void movimentar() {
+      if (direcao1 = 1) { do circulo1.acima(); }
+      if (direcao1 = 2) { do circulo1.abaixo(); }
+      if (direcao1 = 3) { do circulo1.esquerda(); }
+      if (direcao1 = 4) { do circulo1.direita(); }
+      do Sys.wait(5);  // delays the next movement
+
+      if (direcao2 = 5) { do circulo2.acima(); }
+      if (direcao2 = 6) { do circulo2.abaixo(); }
+      if (direcao2 = 7) { do circulo2.esquerda(); }
+      if (direcao2 = 8) { do circulo2.direita(); }
+      do Sys.wait(5);  // delays the next movement
+
+      return;
+   }
+
+   /** Método que executa o jogo e faz a leitura do teclado */
+   method void executar() {
+      var char key;  // the key currently pressed by the user
+      var boolean exit;
+      let exit = false;
+      
+      while (~exit) {
+         while (key = 0) {
+            let key = Keyboard.keyPressed();
+            do movimentar();
+         }
+         if (key = 81)  { let exit = true; }     // q 
+         if (key = 90)  { do circulo1.aumentar();} // z
+         if (key = 88)  { do circulo1.diminuir();} // x 
+         if (key = 49)  { do circulo2.diminuir();} // 1
+         if (key = 50)  { do circulo2.aumentar();} // 2
+         
+         if (key = 131) { let direcao1 = 1; }   // Acima
+         if (key = 133) { let direcao1 = 2; }   // Abaixo
+         if (key = 130) { let direcao1 = 3; }   // Esquerda
+         if (key = 132) { let direcao1 = 4; }   // Direita
+
+         if (key = 56) { let direcao2 = 5; }   // Acima (8)
+         if (key = 53) { let direcao2 = 6; }   // Abaixo (5)
+         if (key = 52) { let direcao2 = 7; }   // Esquerda (4)
+         if (key = 54) { let direcao2 = 8; }   // Direita (6)
+
+         while (~(key = 0)) {
+            let key = Keyboard.keyPressed();
+            do movimentar();
+         }
+     }
+     return;
+   }
+}
+
+
+

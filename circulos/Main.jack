@@ -1,0 +1,9 @@
+// Classe principal onde o jogo é executado
+class Main {
+    function void main() {
+        var Game game;
+        let game = Game.new();
+        do game.executar();
+        return;
+    }
+}

@@ -1,0 +1,112 @@
+class Circulo {
+
+   field int x, y, r; // x e y são as orientações e r é o raio do círculo
+
+   /** Construtor da classe Circulo. */
+   constructor Circulo new(int Ax, int Ay, int Ar) {
+      let x = Ax;
+      let y = Ay;
+      let r = Ar;
+      do desenhar();
+      return this;
+   }
+
+
+   /** Método que desenha o círculo. */
+   method void desenhar() {
+      do Screen.setColor(true);
+      do Screen.drawCircle(x, y, r);
+      return;
+   }
+
+   /** Método que apaga o círculo. */
+   method void apagar() {
+      do Screen.setColor(false);
+      do Screen.drawCircle(x, y, r);
+      return;
+   }
+
+    /** Aumenta o raio do círculo */
+   method void aumentar() {
+      if (r < 14) {
+         do apagar();
+         let r = r + 2;
+         do desenhar();
+      }
+      return;
+   }
+
+   /** Dminui o raio do círculo */
+   method void diminuir() {
+      if (r > 2) {
+         do apagar();
+         let r = r - 2;
+         do desenhar();
+      }
+      return;
+   }
+
+   /** Movimenta o círculo para cima */
+   method void acima() {
+      if (y > 30) {
+         do Screen.setColor(false);
+         do Screen.drawCircle(x,y, r);
+         do Screen.drawCircle(x, (y + r) - 1, r);
+         do Screen.drawCircle((x + r) - 1, y, r);
+         do Screen.drawCircle((x + r), y, r);
+         do Screen.drawCircle(x, (y + r), r);
+         let y = y - 2;
+         do Screen.setColor(true);
+         do Screen.drawCircle(x,y, r);
+      }
+      return;
+   }
+
+   /** Movimenta o círculo para baixo */
+   method void abaixo() {
+      if ((y + r) < 230) {
+         do Screen.setColor(false);
+         do Screen.drawCircle(x, y, r);
+         do Screen.drawCircle((x + r) - 1, y, r);
+         do Screen.drawCircle(x,(y + r) - 1, r);
+         do Screen.drawCircle((x + r), y, r);
+         do Screen.drawCircle(x,(y + r), r);
+         let y = y + 2;
+         do Screen.setColor(true);
+         do Screen.drawCircle(x,(y + r) - 1, r);
+      }
+      return;
+   }
+
+   /** Movimenta o círculo para esquerda */
+   method void esquerda() {
+      if (x > 30) {
+         do Screen.setColor(false);
+         do Screen.drawCircle(x, y, r);
+         do Screen.drawCircle((x + r) - 1, y, r);
+         do Screen.drawCircle(x, (y + r) - 1, r);
+         do Screen.drawCircle((x + r), y, r);
+         do Screen.drawCircle(x, (y + r), r);
+         let x = x - 2;
+         do Screen.setColor(true);
+         do Screen.drawCircle(x, y, r);
+      }
+      return;
+   }
+
+   /** Movimenta o círculo para direita */
+   method void direita() {
+      if ((x + r) < 470) {
+         do Screen.setColor(false);
+         do Screen.drawCircle(x, y, r);
+         do Screen.drawCircle(x, (y - r) + 1, r);
+         do Screen.drawCircle((x - r) + 1, y, r);
+         do Screen.drawCircle(x, (y + r), r);
+         do Screen.drawCircle((x + r), y, r);
+         let x = x + 2;
+         do Screen.setColor(true);
+         do Screen.drawCircle((x + r) - 1, y, r);
+      }
+      return;
+   }
+}
